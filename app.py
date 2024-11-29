@@ -112,7 +112,7 @@ def cambiarClave():
             msg = Message("Codigo de verificación para cambio de clave.",
                           recipients=[email],
                           body=f"Hola {empleado['nombre']}. Su código de verificación es: {codigo}",
-                          sender="santiimontironi@gmail.com")
+                          sender="fullweb10@gmail.com")
             
             Mail.send(msg)
             mensajeClaveNueva = "Clave cambiada con éxito. Por favor inicie sesión ingresando correctamente el codigo enviado a su e-mail."
