@@ -87,7 +87,6 @@ def cambiarClave():
     mensajeClaveNueva = None
     errorClaveInvalida = None
     inputCodigo = False
-    print("PASO")
     if request.method == "POST":
         email = request.form['email']
         claveNueva = request.form['claveNueva']
