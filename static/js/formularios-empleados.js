@@ -12,7 +12,6 @@ const formNuevaClave = document.querySelector(".formNuevaClave")
 const btnOlvidarContraseña = document.querySelector(".btn-olvidar-contraseña")
 const contenedorNuevaClave = document.getElementById("contenedorNuevaClave")
 const btnCerrar = document.querySelector(".btnCerrar")
-const btnEnviarClaveNueva = document.querySelector(".btnEnviarClaveNueva")
 
 btnOlvidarContraseña.addEventListener("click",function(){
     contenedorNuevaClave.style.display = "flex"
