@@ -40,8 +40,7 @@ def login():
         conexion.execute('SELECT * FROM registroempleados WHERE correo_registro = %s AND estado = "Activo"', (correo,))
         registro = conexion.fetchone()
         
-        if registro:
-            if check_password_hash(registro['clave_registro'],clave):
+        if registro and check_password_hash(registro['clave_registro'],clave):
                 idEmpleado = registro['id']
                 nombreEmpleado = registro['nombre']
                 fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -69,10 +68,7 @@ def login():
                     return render_template ('empleados.html',nombre = nombreEmpleado)
                 else:
                     errorCodigoIncorrecto = "Codigo incorrecto"
-                    mostrarCodigo = True
-            else:
-                    errorClaveIncorrecta = "Clave incorrecta."
-                    mostrarCodigo = True if session.get('codigoVerificacion') else None
+                    mostrarCodigo = True 
         else:
             error = "Credenciales incorrectas."
             mostrarCodigo = True if session.get('codigoVerificacion') else None
