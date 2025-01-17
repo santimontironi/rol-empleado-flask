@@ -41,34 +41,34 @@ def login():
         registro = conexion.fetchone()
         
         if registro and check_password_hash(registro['clave_registro'],clave):
-                idEmpleado = registro['id']
-                nombreEmpleado = registro['nombre']
-                fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            idEmpleado = registro['id']
+            nombreEmpleado = registro['nombre']
+            fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             
-                #SE RECUPERA EL NOMBRE PARA PODER MOSTRARLO EN PANTALLA Y MANEJAR LA AUTENTICACION.
-                session['nombre'] = nombreEmpleado
+            #SE RECUPERA EL NOMBRE PARA PODER MOSTRARLO EN PANTALLA Y MANEJAR LA AUTENTICACION.
+            session['nombre'] = nombreEmpleado
                 
-                #SE RECUPERA EL ID PARA POSTERIORES OPERACIONES
-                session['id'] = idEmpleado
+            #SE RECUPERA EL ID PARA POSTERIORES OPERACIONES
+            session['id'] = idEmpleado
                 
-                conexion.execute('SELECT * FROM ingresoempleados WHERE id_empleado = %s',(idEmpleado,))
-                registro_repetido = conexion.fetchone()
+            conexion.execute('SELECT * FROM ingresoempleados WHERE id_empleado = %s',(idEmpleado,))
+            registro_repetido = conexion.fetchone()
 
-                if str(codigo).strip() == str(session.get('codigoVerificacion')).strip():
-                    #SI EL EMPLEADO QUE INGRESA YA INGRESÓ PREVIAMENTE SE ACTUALIZA LA FECHA Y HORA
-                    if registro_repetido:
-                        conexion.execute('UPDATE ingresoempleados SET fechasesion = %s WHERE id_empleado = %s',(fecha,idEmpleado))
-                    else:
-                        conexion.execute('INSERT INTO ingresoempleados(id_empleado,fechasesion) VALUES (%s,%s)',(idEmpleado,fecha))
-                    
-                    mysql.connection.commit()
-                    
-                    session.pop('codigoVerificacion',None) #elimina la clave 'codigoVerificacion' de la sesión si existe, y el argumento None asegura que no se genere un error en caso de que la clave no esté presente.
-                    
-                    return render_template ('empleados.html',nombre = nombreEmpleado)
+            if str(codigo).strip() == str(session.get('codigoVerificacion')).strip():
+                #SI EL EMPLEADO QUE INGRESA YA INGRESÓ PREVIAMENTE SE ACTUALIZA LA FECHA Y HORA
+                if registro_repetido:
+                    conexion.execute('UPDATE ingresoempleados SET fechasesion = %s WHERE id_empleado = %s',(fecha,idEmpleado))
                 else:
-                    errorCodigoIncorrecto = "Codigo incorrecto"
-                    mostrarCodigo = True 
+                    conexion.execute('INSERT INTO ingresoempleados(id_empleado,fechasesion) VALUES (%s,%s)',(idEmpleado,fecha))
+                    
+                mysql.connection.commit()
+                    
+                session.pop('codigoVerificacion',None) #elimina la clave 'codigoVerificacion' de la sesión si existe, y elargumento None asegura que no se genere un error en caso de que la clave no esté presente.
+                    
+                return render_template ('empleados.html',nombre = nombreEmpleado)
+            else:
+                errorCodigoIncorrecto = "Codigo incorrecto"
+                mostrarCodigo = True 
         else:
             error = "Credenciales incorrectas."
             mostrarCodigo = True if session.get('codigoVerificacion') else None
