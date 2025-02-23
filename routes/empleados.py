@@ -1,7 +1,9 @@
-from flask import redirect,url_for,render_template
+from flask import redirect,url_for,render_template,session,Blueprint
+
+empleados_bp = Blueprint('empleados',__name__)
 
 #RUTA Y FUNCION PARA EL MENU DE EMPLEADOS.
-@app.route('/empleados')
+@empleados_bp.route('/empleados')
 def empleados():
     nombre = session.get('nombre')
     if 'nombre' not in session:
