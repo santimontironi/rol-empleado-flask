@@ -18,4 +18,4 @@ def eliminarCliente():
             conexion.execute('UPDATE proyectosclientes SET activo = FALSE WHERE id_cliente = %s',(clienteId,))
             mysql.connection.commit()
             
-            return redirect(url_for('listadoClientes'))
+            return redirect(url_for('clientes.listadoClientes'))

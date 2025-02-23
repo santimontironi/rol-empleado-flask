@@ -25,4 +25,4 @@ def editarCliente():
             conexion.execute('UPDATE proyectosclientes SET titulo_proyecto = %s, descripcion_proyecto = %s,estado_proyecto = %s WHERE id_cliente = %s',(tituloNuevo,infoNueva,estadoNuevo,idCliente))
             mysql.connection.commit()
 
-            return redirect(url_for('listadoClientes'))
+            return redirect(url_for('clientes.listadoClientes'))
