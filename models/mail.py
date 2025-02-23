@@ -1,5 +1,7 @@
 from flask_mail import Mail
 
+mail = Mail()
+
 def configurar_mail(app):
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
@@ -8,4 +10,4 @@ def configurar_mail(app):
     app.config['MAIL_USERNAME'] = 'fullweb10@gmail.com'
     app.config['MAIL_PASSWORD'] = 'zrgd cwow fexh ykgw'
     app.config['MAIL_DEFAULT_SENDER'] = 'fullweb10@gmail.com'
-    return Mail(app)
+    mail.init_app(app)

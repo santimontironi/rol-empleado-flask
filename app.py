@@ -16,10 +16,10 @@ app = Flask(__name__)
 app.secret_key = "claveSecreta"
 
 #INICIALIZACION DE LA BD
-mysql = inicializar_bd(app)
+inicializar_bd(app)
 
-#INICIALIZACION DEL SERVIDOR DE MAILS
-Mail = configurar_mail(app)
+#INICIALIZACION DE LOS MAILS
+configurar_mail(app)
 
 #SE REGISTRAN LOS BLUEPRINTS
 app.register_blueprint(loginEmpleado_bp)
@@ -35,13 +35,13 @@ app.register_blueprint(misSugerencias_bp)
 #RUTA Y FUNCION DEL INICIO
 @app.route('/')
 def ingresoEmpleados():
-    return redirect(url_for('login'))
+    return redirect(url_for('login.login'))
     
 #RUTA Y FUNCION PARA CERRAR SESION.
 @app.route('/cerrar-sesion')
 def cerrarSesion():
     session.pop('nombre')
-    return redirect(url_for('login'))
+    return redirect(url_for('login.login'))
     
 if __name__ == '__main__':
     app.run(debug = True,port = 5000, host = "0.0.0.0")

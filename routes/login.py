@@ -3,9 +3,9 @@ from flask_mail import Message,Mail
 from datetime import datetime
 import random
 from models.bd import mysql
+from models.mail import mail
 from werkzeug.security import generate_password_hash, check_password_hash #libreria para el hash de claves
 import re # proporciona herramientas para trabajar con expresiones regulares. Las expresiones regulares son una poderosa herramienta para buscar, comparar y manipular cadenas de texto según patrones específicos.
-
 
 loginEmpleado_bp = Blueprint('login',__name__)
 
@@ -95,7 +95,7 @@ def cambiarClave():
                           body=f"Hola {empleado['nombre']}. Su código de verificación es: {codigo}",
                           sender="fullweb10@gmail.com")
             
-            Mail.send(msg)
+            mail.send(msg)
             mensajeClaveNueva = "Clave cambiada con éxito. Por favor inicie sesión ingresando correctamente el codigo enviado a su e-mail."
         
             inputCodigo = True

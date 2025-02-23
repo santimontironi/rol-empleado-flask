@@ -9,4 +9,4 @@ def inicializar_bd(app):
     app.config['MYSQL_PASSWORD'] = ''
     app.config['MYSQL_DB'] = 'proyecto'
     app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-    return MySQL(app)
+    mysql.init_app(app)
