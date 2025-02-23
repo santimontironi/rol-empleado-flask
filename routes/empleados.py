@@ -7,6 +7,6 @@ empleados_bp = Blueprint('empleados',__name__)
 def empleados():
     nombre = session.get('nombre')
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         return render_template('empleados.html',nombre = nombre)

@@ -8,7 +8,7 @@ noticiasRecientes_bp = Blueprint('noticiasRecientes',__name__)
 def noticiasRecientes():
     noticias = []
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         conexion = mysql.connection.cursor()
         conexion.execute('SELECT * FROM noticias WHERE estado = "publicada"')

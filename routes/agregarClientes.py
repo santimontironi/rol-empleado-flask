@@ -11,7 +11,7 @@ def agregarClientes():
     mensajeEnlace = None
 
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         if request.method == "POST":
             nombreCliente = request.form['nombre_cliente']

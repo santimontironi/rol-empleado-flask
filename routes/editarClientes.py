@@ -7,7 +7,7 @@ editarCliente_bp = Blueprint('editarCliente',__name__)
 @editarCliente_bp.route('/editar-cliente',methods = ['POST','GET'])
 def editarCliente():
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         if request.method == 'GET':
             idCliente = request.args.get('clienteId')

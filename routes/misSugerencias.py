@@ -8,7 +8,7 @@ misSugerencias_bp = Blueprint('misSugerencias',__name__)
 def misSugerencias():
     sugerencias = []
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         if request.method == "GET":
             conexion = mysql.connection.cursor()

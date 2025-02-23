@@ -7,7 +7,7 @@ eliminarCliente_bp = Blueprint('eliminarClientes',__name__)
 @eliminarCliente_bp.route('/eliminar-cliente', methods = ['POST','GET'])   
 def eliminarCliente():
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         if request.method == "POST":
             clienteId = request.form['clienteId']

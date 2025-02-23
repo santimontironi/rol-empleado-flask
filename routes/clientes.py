@@ -7,7 +7,7 @@ clientes_bp = Blueprint('clientes',__name__)
 @clientes_bp.route('/listado-clientes', methods = ['GET','POST'])
 def listadoClientes():
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:   
         conexion = mysql.connection.cursor()
         if request.method == "GET":

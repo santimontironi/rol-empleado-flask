@@ -8,7 +8,7 @@ sugerencias_bp = Blueprint('sugerencias',__name__)
 @sugerencias_bp.route('/sugerencias')
 def sugerencias():
     if 'nombre' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('login.login'))
     else:
         return render_template('sugerencias.html')
     
